@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+    <title>Login</title>
+</head>
+<body>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+    <title>Multi-Category App</title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Авторизация</div>
+
+                <div class="card-body">
+                    <div th:if="${param.error}" style="text-align: center">
+                        <p style="color: #FF1C19;">Email or Password invalid, please try again</p>
+                    </div>
+
+                    <form method="POST" th:action="@{/login}">
+                        <div class="form-group row">
+                            <label for="email" class="col-sm-4 col-form-label text-md-right">E-Mail</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control" name="email" required autofocus>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">Пароль</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="password" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Вход
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+</body>
+</html>

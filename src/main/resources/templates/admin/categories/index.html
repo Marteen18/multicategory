@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+    <title>Категории</title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <div class="card">
+        <div class="card-header">
+            Категории
+
+            <a class="btn btn-sm btn-primary" th:href="@{/admin/categories/create}" style="float: right;">
+                Создать категорию
+            </a>
+        </div>
+
+        <div class="card-body">
+            <ul class="list-group">
+                <li th:replace="admin/fragments/category-items :: renderCategories(${categories})"></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

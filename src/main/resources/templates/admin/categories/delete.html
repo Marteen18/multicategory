@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+    <title>Удалить категорию</title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <div class="card">
+        <div class="card-header">Подтверждение удаления</div>
+        <div class="card-body">
+            <!--/*@thymesVar id="current" type="com.vyacheslavgoryunov.multicategory.model.Category"*/-->
+            <form th:action="@{/admin/categories/{id}(id = ${current.id})}" th:method="DELETE">
+                <div class="form-group">
+                    Вы уверены, что хотите удалить категорию
+                    <mark th:text="${current.title}"></mark>
+                    ?
+
+                    Вместе с ней удалятся все дочерние подкатегории.
+                </div>
+
+                <button type="submit" class="btn btn-danger">Удалить</button>
+                <a class="btn btn-light" th:href="@{/admin/categories/{id}/edit(id = ${current.id})}">
+                    Вернуться к редактированию
+                </a>
+            </form>
+        </div>
+    </div>
+</div>

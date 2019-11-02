@@ -1,0 +1,16 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<!--/*@thymesVar id="containers" type="java.util.List"*/-->
+<!--/*@thymesVar id="container" type="com.vyacheslavgoryunov.multicategory.common.CategoryContainer"*/-->
+<!--/*@thymesVar id="activeId" type="java.lang.Integer"*/-->
+<th:block th:fragment="renderCategories(containers, activeId)" th:each="container : ${containers}">
+    <a th:class="${'nav-link offset-' + container.depth + (container.category.id == activeId ? ' active' : '')}"
+       th:href="@{/category/{id}(id=${container.category.id})}"
+       th:text="${container.category.title}"></a>
+
+    <a th:replace="fragments/category-items :: renderCategories(${container.children}, ${activeId})"></a>
+</th:block>
+</body>
+</html>

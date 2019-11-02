@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+    <!--/*@thymesVar id="current" type="com.vyacheslavgoryunov.multicategory.model.User"*/-->
+    <title th:text="${current == null ? 'Добавить пользователя' : 'Редактировать пользователя'}"></title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <!--/*@thymesVar id="current" type="com.vyacheslavgoryunov.multicategory.model.User"*/-->
+    <div class="card">
+        <div class="card-header"
+             th:text="${current == null ? 'Добавить пользователя' : 'Редактировать пользователя'}"></div>
+        <div class="card-body">
+            <p th:if="${param.emailError}" class="alert alert-danger">Пользователь с таким email уже существует</p>
+
+            <form th:action="@{/admin/users/{id}(id = ${current?.id != null ? current.id : ''})}"
+                  th:method="${current == null ? 'POST' : 'PUT'}">
+
+                <div class="form-group">
+                    <label for="name">Имя</label>
+                    <input type="text" class="form-control" name="name" id="name" th:value="${current?.name}">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-Mail</label>
+                    <input type="text" class="form-control" name="email" id="email" th:value="${current?.email}">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Новый пароль</label>
+                    <input type="password" class="form-control" name="password" id="password">
+                </div>
+
+                <div class="form-group">
+                    <label for="password_confirmation">Подтверждение нового пароля</label>
+                    <input type="password" class="form-control" name="password_confirmation" id="password_confirmation">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+                <a class="btn btn-danger" th:if="${current != null}"
+                   th:href="@{/admin/users/{id}/delete(id=${current.id})}">Удалить</a>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<!--/*@thymesVar id="item" type="com.vyacheslavgoryunov.multicategory.model.Goods"*/-->
+<!--/*@thymesVar id="items" type="java.util.List"*/-->
+
+<th:block th:fragment="renderGoods(items)" th:each="item : ${items}">
+    <div th:replace="goods/card :: renderCard(${item}, ${true})"></div>
+</th:block>
+</body>
+</html>

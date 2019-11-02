@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+    <title>Список товаров</title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <div class="card">
+        <div class="card-header">
+            Список товаров
+
+            <a class="btn btn-sm btn-primary" th:href="@{/admin/goods/create}" style="float: right;">
+                Добавить товар
+            </a>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Название</th>
+                <th scope="col">Категория</th>
+                <th scope="col">Дата добавления</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--/*@thymesVar id="goodsList" type="java.util.List"*/-->
+            <!--/*@thymesVar id="goods" type="com.vyacheslavgoryunov.multicategory.model.Goods"*/-->
+            <tr th:each="goods : ${goodsList}">
+                <th scope="row" th:text="${goods.id}">
+                </th>
+                <td>
+                    <a th:href="@{/admin/goods/{id}/edit(id=${goods.id})}" th:text="${goods.title}"></a>
+                </td>
+                <td th:text="${goods.category?.title ?: 'Без категории'}"></td>
+                <td th:text="${goods.createdAt.toLocaleString()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>

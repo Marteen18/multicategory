@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+    <title>Подтверждение удаления</title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <div class="card">
+        <div class="card-header">Подтверждение удаления</div>
+        <div class="card-body">
+            <!--/*@thymesVar id="current" type="com.vyacheslavgoryunov.multicategory.model.Goods"*/-->
+            <form th:action="@{/admin/goods/{id}(id = ${current.id})}" th:method="DELETE">
+                <div class="form-group">
+                    Вы уверены, что хотите удалить товар <mark th:text="${current.title}"></mark>?
+                </div>
+
+                <button type="submit" class="btn btn-danger">Удалить</button>
+                <a class="btn btn-light" th:href="@{/admin/goods/{id}/edit(id = ${current.id})}">
+                    Вернуться к редактированию
+                </a>
+            </form>
+        </div>
+    </div>
+</div>

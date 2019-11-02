@@ -1,0 +1,35 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<!--/*@thymesVar id="container" type="com.vyacheslavgoryunov.multicategory.common.CategoryContainer"*/-->
+<!--/*@thymesVar id="containers" type="java.util.List"*/-->
+<th:block th:fragment="renderCategories(containers)" th:each="container : ${containers}">
+    <li th:class="${'list-group-item offset-' + container.category.depth}">
+        <div class="row">
+            <a class="col" th:href="@{/admin/categories/{id}/edit(id=${container.category.id})}"
+               th:text="${container.category.title}"></a>
+
+            <div class="col-2 dropdown" style="text-align: right">
+                <a class="btn btn-light btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Действия
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" th:href="@{/admin/categories/create(parent_id=${container.category.id})}">
+                        Добавить подкатегорию
+                    </a>
+                    <a class="dropdown-item" th:href="@{/admin/categories/{id}/edit(id=${container.category.id})}">
+                        Редактировать
+                    </a>
+                    <a class="dropdown-item" th:href="@{/admin/categories/{id}/delete(id=${container.category.id})}">
+                        Удалить
+                    </a>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li th:replace="admin/fragments/category-items :: renderCategories(${container.children})"></li>
+</th:block>
+</body>
+</html>

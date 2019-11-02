@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+    <title>Multi-Category App</title>
+</head>
+<body>
+<div class="row" layout:fragment="content">
+    <div class="col-md-3">
+        <nav class="nav nav-pills flex-column">
+            <a th:replace="fragments/category-items :: renderCategories(${categories}, ${categoryId ?: 0})"></a>
+        </nav>
+    </div>
+
+    <div class="col">
+        <th:block th:replace="fragments/goods :: renderGoods(${goods})"/>
+    </div>
+</div>
+</body>
+</html>

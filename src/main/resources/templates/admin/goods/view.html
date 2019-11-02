@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+    <title th:text="${current == null ? 'Добавить товар' : 'Редактировать товар'}"></title>
+
+    <script src="/js/goods-view.js" type="application/javascript"></script>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <div class="card">
+        <div class="card-header" th:text="${current == null ? 'Добавить товар' : 'Редактировать товар'}"></div>
+        <div class="card-body">
+            <form th:action="@{/admin/goods/{id}(id = ${current?.id != null ? current.id : ''})}"
+                  th:method="${current == null ? 'POST' : 'PUT'}">
+                <!--/*@thymesVar id="current" type="com.vyacheslavgoryunov.multicategory.model.Goods"*/-->
+
+                <div class="form-group">
+                    <label for="title">Название</label>
+                    <input type="text" class="form-control" name="title" id="title"
+                           placeholder="Новый товар"
+                           th:value="${current?.title}">
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Категория</label>
+
+                    <!--/*@thymesVar id="categories" type="java.util.List"*/-->
+                    <!--/*@thymesVar id="category" type="com.vyacheslavgoryunov.multicategory.model.Category"*/-->
+                    <select class="form-control" name="category_id" id="category" th:value="${current?.title}">
+                        <option value="0">Без категории</option>
+                        <option th:each="category : ${categories}"
+                                th:text="${category.title}"
+                                th:value="${category.id}"
+                                th:selected="${current?.category?.id == category.id}"></option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Описание</label>
+                    <textarea th:text="${current?.description}"
+                              class="form-control" name="description" id="description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Стоимость</label>
+                    <input type="number" class="form-control" name="price" id="price" step="0.01" min="0"
+                           th:value="${current?.price ?: 0}">
+                </div>
+
+                <div class="form-group card">
+                    <div class="card-header">
+                        Дополнительные атрибуты
+                    </div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <td>Название</td>
+                            <td>Значение</td>
+                            <td></td>
+                        </tr>
+                        </thead>
+                        <tbody id="details_body">
+                        <tr th:each="detail, it : ${current?.details}">
+                            <td>
+                                <input class="form-control" type="text"
+                                       data-target="title"
+                                       data-details="true"
+                                       th:name="${'details[' + it.index + '].title'}"
+                                       th:value="${detail.title ?: ''}">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text"
+                                       data-target="value"
+                                       data-details="true"
+                                       th:name="${'details[' + it.index + '].value'}"
+                                       th:value="${detail.value ?: ''}">
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-danger"
+                                   onclick="window.removeDetailNode(this); return false;">Удалить</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="new_detail_title" class="form-control" type="text"
+                                       placeholder="Новый атрибут">
+                            </td>
+                            <td>
+                                <input id="new_detail_value" class="form-control" type="text" placeholder="">
+                            </td>
+                            <td>
+                                <a id="new_detail_button" href="#" class="btn btn-primary">Добавить</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+
+                <a class="btn btn-light" th:if="${current != null}"
+                   th:href="@{/goods/{id}(id=${current.id})}">Просмотр</a>
+
+                <a class="btn btn-danger" th:if="${current != null}"
+                   th:href="@{/admin/goods/{id}/delete(id=${current.id})}">Удалить</a>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

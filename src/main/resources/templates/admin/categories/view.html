@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+    <title th:text="${current == null ? 'Добавить категорию' : 'Редактировать категорию'}"></title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <div class="card">
+        <div class="card-header" th:text="${current == null ? 'Добавить категорию' : 'Редактировать категорию'}"></div>
+        <div class="card-body">
+            <form th:action="@{/admin/categories/{id}(id = ${current?.id != null ? current.id : ''})}"
+                  th:method="${current == null ? 'POST' : 'PUT'}">
+                <!--/*@thymesVar id="current" type="com.vyacheslavgoryunov.multicategory.model.Category"*/-->
+                <!--/*@thymesVar id="parent" type="com.vyacheslavgoryunov.multicategory.model.Category"*/-->
+                <div class="form-group" th:if="${parent}">
+                    <label for="parent_name">Родительская категория</label>
+                    <input type="text" class="form-control" id="parent_name" th:value="${parent.title}" disabled>
+                    <input type="hidden" name="parent_id" th:value="${parent.id}">
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Имя</label>
+                    <input type="text" class="form-control" name="title" id="title" th:value="${current?.title}">
+                </div>
+
+                <div class="form-group">
+                    <label for="is_public">Доступность</label>
+                    <select class="form-control" id="is_public" name="is_public">
+                        <option value="0">Только зарегистрированным</option>
+                        <option value="1" th:selected="${current?.isPublic}">Всем пользователям</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+                <a class="btn btn-danger" th:if="${current != null}" th:href="@{/admin/categories/{id}/delete(id=${current.id})}">Удалить</a>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
