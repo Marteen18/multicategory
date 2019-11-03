@@ -11,8 +11,8 @@
         <div class="card-body">
             <form th:action="@{/admin/categories/{id}(id = ${current?.id != null ? current.id : ''})}"
                   th:method="${current == null ? 'POST' : 'PUT'}">
-                <!--/*@thymesVar id="current" type="com.vyacheslavgoryunov.multicategory.model.Category"*/-->
-                <!--/*@thymesVar id="parent" type="com.vyacheslavgoryunov.multicategory.model.Category"*/-->
+                <!--/*@thymesVar id="current" type="com.marteen18.multicategory.model.Category"*/-->
+                <!--/*@thymesVar id="parent" type="com.marteen18.multicategory.model.Category"*/-->
                 <div class="form-group" th:if="${parent}">
                     <label for="parent_name">Родительская категория</label>
                     <input type="text" class="form-control" id="parent_name" th:value="${parent.title}" disabled>

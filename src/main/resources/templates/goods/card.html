@@ -1,8 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+>
 <body>
-<!--/*@thymesVar id="item" type="com.vyacheslavgoryunov.multicategory.model.Goods"*/-->
+<!--/*@thymesVar id="item" type="com.marteen18.multicategory.model.Goods"*/-->
 <!--/*@thymesVar id="compact" type="java.lang.Boolean"*/-->
 <div class="card" th:fragment="renderCard(item, compact)" style="margin-bottom: 10px">
     <div class="card-header" th:if="${!compact}">

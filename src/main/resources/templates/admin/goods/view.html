@@ -13,7 +13,7 @@
         <div class="card-body">
             <form th:action="@{/admin/goods/{id}(id = ${current?.id != null ? current.id : ''})}"
                   th:method="${current == null ? 'POST' : 'PUT'}">
-                <!--/*@thymesVar id="current" type="com.vyacheslavgoryunov.multicategory.model.Goods"*/-->
+                <!--/*@thymesVar id="current" type="com.marteen18.multicategory.model.Goods"*/-->
 
                 <div class="form-group">
                     <label for="title">Название</label>
@@ -26,7 +26,7 @@
                     <label for="category">Категория</label>
 
                     <!--/*@thymesVar id="categories" type="java.util.List"*/-->
-                    <!--/*@thymesVar id="category" type="com.vyacheslavgoryunov.multicategory.model.Category"*/-->
+                    <!--/*@thymesVar id="category" type="com.marteen18.multicategory.model.Category"*/-->
                     <select class="form-control" name="category_id" id="category" th:value="${current?.title}">
                         <option value="0">Без категории</option>
                         <option th:each="category : ${categories}"

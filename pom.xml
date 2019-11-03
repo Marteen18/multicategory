@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <start-class>com.vyacheslavgoryunov.multicategory.MulticategoryApplication</start-class>
+        <start-class>com.marteen18.multicategory.MulticategoryApplication</start-class>
     </properties>
 
     <dependencies>

@@ -63,9 +63,13 @@ mvn spring-boot:run
 java -jar multicategory-0.0.1-SNAPSHOT.jar
 ``` 
 
+Далее необходимо открыть в браузере [http://127.0.0.1:8080/](http://127.0.0.1:8080/).
+
+
 При первом запуске создастся пользователь по умолчанию. 
 - Логин `default@default`
 - Пароль `123456`
+
 
 Это поведение можно переопределить, отредактировав файл миграции  по пути `/src/main/java/db/migration/V1_1__CreateDefaultUser.java`.
 

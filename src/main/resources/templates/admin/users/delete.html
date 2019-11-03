@@ -9,7 +9,7 @@
     <div class="card">
         <div class="card-header">Подтверждение удаления</div>
         <div class="card-body">
-            <!--/*@thymesVar id="current" type="com.vyacheslavgoryunov.multicategory.model.Goods"*/-->
+            <!--/*@thymesVar id="current" type="com.marteen18.multicategory.model.Goods"*/-->
             <form th:action="@{/admin/users/{id}(id = ${current.id})}" th:method="DELETE">
                 <div class="form-group">
                     Вы уверены, что хотите удалить пользователя <mark th:text="${current.email}"></mark>?

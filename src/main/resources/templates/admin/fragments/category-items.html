@@ -1,8 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+>
 <body>
-<!--/*@thymesVar id="container" type="com.vyacheslavgoryunov.multicategory.common.CategoryContainer"*/-->
+<!--/*@thymesVar id="container" type="com.marteen18.multicategory.common.CategoryContainer"*/-->
 <!--/*@thymesVar id="containers" type="java.util.List"*/-->
 <th:block th:fragment="renderCategories(containers)" th:each="container : ${containers}">
     <li th:class="${'list-group-item offset-' + container.category.depth}">

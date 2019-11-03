@@ -1,9 +1,8 @@
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+>
 <body>
 <!--/*@thymesVar id="containers" type="java.util.List"*/-->
-<!--/*@thymesVar id="container" type="com.vyacheslavgoryunov.multicategory.common.CategoryContainer"*/-->
+<!--/*@thymesVar id="container" type="com.marteen18.multicategory.common.CategoryContainer"*/-->
 <!--/*@thymesVar id="activeId" type="java.lang.Integer"*/-->
 <th:block th:fragment="renderCategories(containers, activeId)" th:each="container : ${containers}">
     <a th:class="${'nav-link offset-' + container.depth + (container.category.id == activeId ? ' active' : '')}"

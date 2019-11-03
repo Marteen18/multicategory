@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/main}">
 <head>
-    <!--/*@thymesVar id="current" type="com.vyacheslavgoryunov.multicategory.model.User"*/-->
+    <!--/*@thymesVar id="current" type="com.marteen18.multicategory.model.User"*/-->
     <title th:text="${current == null ? 'Добавить пользователя' : 'Редактировать пользователя'}"></title>
 </head>
 <body>
 <div layout:fragment="content" class="container">
-    <!--/*@thymesVar id="current" type="com.vyacheslavgoryunov.multicategory.model.User"*/-->
+    <!--/*@thymesVar id="current" type="com.marteen18.multicategory.model.User"*/-->
     <div class="card">
         <div class="card-header"
              th:text="${current == null ? 'Добавить пользователя' : 'Редактировать пользователя'}"></div>
